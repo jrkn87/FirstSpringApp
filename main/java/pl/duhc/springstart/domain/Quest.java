@@ -2,7 +2,7 @@ package pl.duhc.springstart.domain;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Quest {
 
     private String description;
