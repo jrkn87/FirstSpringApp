@@ -1,4 +1,4 @@
-package pl.duhc.kurspring;
+package pl.duhc.springstart;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
