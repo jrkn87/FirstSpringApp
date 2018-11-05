@@ -1,10 +1,5 @@
 package pl.duhc.springstart.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-//@Component
 public class Knight {
 
     private String name;
@@ -13,7 +8,8 @@ public class Knight {
     private Quest quest;
 
     public Knight() {
-
+        this.name = "Lucjan";
+        this.age = 52;
     }
 
     public Knight(String name, int age) {
@@ -23,6 +19,14 @@ public class Knight {
 
     public void setQuest(Quest quest) {
         this.quest = quest;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override

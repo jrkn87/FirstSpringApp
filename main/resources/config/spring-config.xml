@@ -9,11 +9,11 @@
 
     <context:component-scan base-package="pl.duhc.springstart"/>
 
-    <import resource="classpath:config/castle-config.xml"/>
+    <import resource="classpath:config/knightRepository-config.xml"/>
 
     <bean id="quest" class="pl.duhc.springstart.domain.Quest"/>
 
-    <bean id="knight" class="pl.duhc.springstart.domain.Knight">
+    <bean id="knight" class="pl.duhc.springstart.domain.Knight" scope="prototype">
         <constructor-arg index="0" value="Lancelot"/>
         <constructor-arg index="1" value="27"/>
         <property name="quest" ref="quest"/>
