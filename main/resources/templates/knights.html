@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}">
+
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>name</td>
+                <td>age</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="knights : ${knights}">
+                <td th:text="${knights.name}"/>
+                <td th:text="${knights.age}"/>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
