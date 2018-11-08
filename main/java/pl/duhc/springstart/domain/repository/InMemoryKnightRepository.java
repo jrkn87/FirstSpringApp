@@ -7,11 +7,12 @@ import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class InMemoryKnightRepository implements KnightRepository {
 
-    Map<String, Knight> knights = new HashMap<>();
+    Map<Integer, Knight> knights = new HashMap<>();
 
     public InMemoryKnightRepository() {
 
@@ -19,12 +20,14 @@ public class InMemoryKnightRepository implements KnightRepository {
 
     @Override
     public void createKnight(String name, int age){
-        knights.put(name, new Knight(name, age));
+        Knight newKnight = new Knight(name, age);
+        newKnight.setId(addNewId());
+        knights.put(newKnight.getId(), newKnight);
     }
 
     @Override
-    public void deleteKnight(String name) {
-        knights.remove(name);
+    public void deleteKnight(Integer id) {
+        knights.remove(id);
     }
 
     @Override
@@ -33,8 +36,9 @@ public class InMemoryKnightRepository implements KnightRepository {
     }
 
     @Override
-    public Knight getKnight(String name) {
-        return knights.get(name);
+    public Optional<Knight> getKnight(String name) {
+        Optional<Knight> knight = knights.values().stream().filter(knight1 -> knight1.getName().equals(name)).findAny();
+        return knight;
     }
 
     @Override
@@ -42,6 +46,12 @@ public class InMemoryKnightRepository implements KnightRepository {
     public void init() {
         createKnight("Lancelot", 21);
         createKnight("Persival", 27);
+        createKnight("Maveric", 17);
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return knights.get(id);
     }
 
     @Override
@@ -49,5 +59,15 @@ public class InMemoryKnightRepository implements KnightRepository {
         return "InMemoryKnightRepository{" +
                 "knights=" + knights +
                 '}';
+    }
+
+    public Integer addNewId() {
+        if (knights.isEmpty()) {
+            return 0;
+        }
+        else {
+            Integer integer = knights.keySet().stream().max(Integer::max).get();
+            return integer + 1;
+        }
     }
 }

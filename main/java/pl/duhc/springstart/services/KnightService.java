@@ -21,4 +21,12 @@ public class KnightService {
     public void createKnight(Knight knight) {
         knightRepository.createKnight(knight.getName(), knight.getAge());
     }
+
+    public Knight getKnight(Integer id) {
+        return knightRepository.getKnightById(id);
+    }
+
+    public void deleteKnight(Integer id) {
+        knightRepository.deleteKnight(id);
+    }
 }

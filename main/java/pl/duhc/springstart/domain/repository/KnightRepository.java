@@ -4,16 +4,18 @@ import pl.duhc.springstart.domain.Knight;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
+import java.util.Optional;
 
 public interface KnightRepository {
     void createKnight(String name, int age);
 
-    void deleteKnight(String name);
+    void deleteKnight(Integer id);
 
     Collection<Knight> getAllKnights();
 
-    Knight getKnight(String name);
+    Optional<Knight> getKnight(String name);
 
-    @PostConstruct
     void init();
+
+    Knight getKnightById(Integer id);
 }

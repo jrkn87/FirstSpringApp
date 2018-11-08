@@ -23,7 +23,8 @@
             <tr th:each="knights : ${knights}">
                 <td th:text="${knights.name}"/>
                 <td th:text="${knights.age}"/>
-                <td><a class="btn btn-link" th:href="${'/knights?id='+knights.id}">Show stats</a></td>
+                <td><a class="btn btn-link" th:href="${'/knight?id='+knights.id}">Show stats</a></td>
+                <td><a class="btn btn-link" th:href="${'/knight/delete/'+knights.id}">Delete knight</a></td>
             </tr>
         </tbody>
     </table>
