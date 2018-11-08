@@ -14,17 +14,22 @@
     <table class="table">
         <thead>
             <tr>
-                <td>name</td>
-                <td>age</td>
+                <td>Knight name:</td>
+                <td>Level:</td>
+                <td>Options:</td>
             </tr>
         </thead>
         <tbody>
             <tr th:each="knights : ${knights}">
                 <td th:text="${knights.name}"/>
                 <td th:text="${knights.age}"/>
+                <td><a class="btn btn-link" th:href="${'/knights?id='+knights.id}">Show stats</a></td>
             </tr>
         </tbody>
     </table>
+    <div class="row">
+        <a class="btn btn-default" href="/newknight">Create new Knight</a>
+    </div>
 </div>
 </body>
 </html>
