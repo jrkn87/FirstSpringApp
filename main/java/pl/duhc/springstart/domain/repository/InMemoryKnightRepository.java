@@ -4,10 +4,7 @@ import org.springframework.stereotype.Repository;
 import pl.duhc.springstart.domain.Knight;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class InMemoryKnightRepository implements KnightRepository {
@@ -66,8 +63,8 @@ public class InMemoryKnightRepository implements KnightRepository {
             return 0;
         }
         else {
-            Integer integer = knights.keySet().stream().max(Integer::max).get();
-            return integer + 1;
+            Integer integer = knights.keySet().stream().max(Comparator.comparing(Integer::valueOf)).get();
+            return ++integer;
         }
     }
 }
