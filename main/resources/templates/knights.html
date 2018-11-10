@@ -9,8 +9,12 @@
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body style="background-color:rgb(108, 117, 125);color:white;">
 <div class="container">
+
+    Server time: <span th:text="${time}"/><br>
+    Gold: <span th:text="${goldValue}"/><br><br>
+
     <table class="table">
         <thead>
             <tr>
@@ -22,9 +26,9 @@
         <tbody>
             <tr th:each="knights : ${knights}">
                 <td th:text="${knights.name}"/>
-                <td th:text="${knights.age}"/>
-                <td><a class="btn btn-link" th:href="${'/knight?id='+knights.id}">Show stats</a></td>
-                <td><a class="btn btn-link" th:href="${'/knight/delete/'+knights.id}">Delete knight</a></td>
+                <td th:text="${knights.level}"/>
+                <td><a class="btn btn-info" th:href="${'/knight?id='+knights.id}">Show stats</a></td>
+                <td><a class="btn btn-danger" th:href="${'/knight/delete/'+knights.id}">Delete knight</a></td>
             </tr>
         </tbody>
     </table>

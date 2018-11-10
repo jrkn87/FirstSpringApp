@@ -9,11 +9,14 @@
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body style="background-color:rgb(108, 117, 125);color:white;">
 <div class="container">
-                <p th:text="${knight.name}"/>
-                <p th:text="${knight.age}"/>
-                <p th:text="${knight.level}"/>
+    Server time: <span th:text="${time}"/><br>
+    Gold: <span th:text="${goldValue}"/><br><br>
+
+    <p th:text="${knight.name}"/>
+    <p th:text="${knight.age}"/>
+    <p th:text="${knight.level}"/>
     <div class="row">
         <a href="/knights" class="btn btn-default">Back</a>
     </div>

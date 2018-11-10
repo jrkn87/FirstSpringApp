@@ -2,6 +2,7 @@ package pl.duhc.springstart.domain.repository;
 
 import org.springframework.stereotype.Repository;
 import pl.duhc.springstart.domain.Knight;
+import pl.duhc.springstart.utils.Ids;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -18,7 +19,7 @@ public class InMemoryKnightRepository implements KnightRepository {
     @Override
     public void createKnight(String name, int age){
         Knight newKnight = new Knight(name, age);
-        newKnight.setId(addNewId());
+        newKnight.setId(Ids.addNewId(knights.keySet()));
         knights.put(newKnight.getId(), newKnight);
     }
 
@@ -56,15 +57,5 @@ public class InMemoryKnightRepository implements KnightRepository {
         return "InMemoryKnightRepository{" +
                 "knights=" + knights +
                 '}';
-    }
-
-    public Integer addNewId() {
-        if (knights.isEmpty()) {
-            return 0;
-        }
-        else {
-            Integer integer = knights.keySet().stream().max(Comparator.comparing(Integer::valueOf)).get();
-            return ++integer;
-        }
     }
 }

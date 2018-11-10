@@ -1,10 +1,22 @@
 package pl.duhc.springstart.domain;
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Knight {
 
     private Integer id;
+
+    @NotNull
+    @Size(min = 3, max = 25)
     private String name;
+
+    @NotNull
+    @Range(min = 16, max = 39)
     private int age;
+
     private int level;
 
     private Quest quest;
