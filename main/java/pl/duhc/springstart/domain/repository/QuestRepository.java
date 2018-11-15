@@ -3,28 +3,33 @@ package pl.duhc.springstart.domain.repository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import pl.duhc.springstart.domain.Quest;
+import pl.duhc.springstart.utils.Ids;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Repository
 public class QuestRepository {
 
-    List<Quest> questsList = new ArrayList<>();
+    Map<Integer, Quest> quests = new HashMap<>();
     final static Random rand = new Random();
 
     public void createQuest(String description) {
-        questsList.add(new Quest(description));
+        Integer newId = Ids.addNewId(quests.keySet());
+        Quest quest = new Quest(newId, description);
+        quests.put(newId, quest);
     }
 
     public void deleteQuest(Quest quest) {
-        questsList.remove(quest);
+        quests.remove(quest.getId());
     }
 
     public List<Quest> getAllQuest() {
-        return questsList;
+        return new ArrayList<>(quests.values());
+    }
+
+    public void updateQuest(int id, Quest quest) {
+        quests.put(id, quest);
     }
 
     @Scheduled(fixedDelayString = "${questdelay.value}")
@@ -42,15 +47,14 @@ public class QuestRepository {
         createQuest(description);
     }
 
-    @PostConstruct
-    public void init() {
-
-    }
-
     @Override
     public String toString() {
         return "QuestRepository{" +
-                "questsList=" + questsList +
+                "questsList=" + quests +
                 '}';
+    }
+
+    public Quest getId(Integer id) {
+        return quests.get(id);
     }
 }

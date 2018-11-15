@@ -42,6 +42,7 @@ public class KnightsController {
 
     @RequestMapping("/newknight")
     public String createKnight(Model model) {
+        model.addAttribute("title", "Add new knight");
         model.addAttribute("knight", new Knight());
         model.addAttribute("time", timeComponent);
         model.addAttribute("goldValue", playerInfo.getGoldValue());

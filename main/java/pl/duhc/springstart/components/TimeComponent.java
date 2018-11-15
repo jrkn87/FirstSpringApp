@@ -2,6 +2,7 @@ package pl.duhc.springstart.components;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -12,8 +13,9 @@ import java.time.format.DateTimeFormatter;
 public class TimeComponent {
 
     private LocalDateTime localDateTime = LocalDateTime.now();
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy hh:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy HH:mm:ss");
 
+    @Scheduled(fixedDelay = 1000)
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }

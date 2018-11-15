@@ -44,12 +44,16 @@ public class InMemoryKnightRepository implements KnightRepository {
     public void init() {
         createKnight("Lancelot", 21);
         createKnight("Persival", 27);
-        createKnight("Maveric", 17);
     }
 
     @Override
     public Knight getKnightById(Integer id) {
         return knights.get(id);
+    }
+
+    @Override
+    public void updateKnight(Integer id, Knight knigth) {
+        knights.put(id, knigth);
     }
 
     @Override

@@ -8,6 +8,7 @@ import pl.duhc.springstart.domain.repository.QuestRepository;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestService {
@@ -25,5 +26,13 @@ public class QuestService {
         Quest randomQuest = allQuest.get(rand.nextInt(allQuest.size()));
         knightRepository.getKnight(knightName).ifPresent(knight -> knight.setQuest(randomQuest));
         questRepository.deleteQuest(randomQuest);
+    }
+
+    public List<Quest> getAllQuestNotStarted() {
+        return questRepository.getAllQuest().stream().filter(quest -> !quest.isStarted()).collect(Collectors.toList());
+    }
+
+    public void updateQuest(Quest quest) {
+        questRepository.updateQuest(quest.getId(), quest);
     }
 }

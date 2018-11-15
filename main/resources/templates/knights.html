@@ -5,6 +5,7 @@
     <title th:text="${title}"></title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="css\styles.css">
 
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
@@ -20,6 +21,7 @@
             <tr>
                 <td>Knight name:</td>
                 <td>Level:</td>
+                <td>Quest</td>
                 <td>Options:</td>
             </tr>
         </thead>
@@ -27,6 +29,10 @@
             <tr th:each="knights : ${knights}">
                 <td th:text="${knights.name}"/>
                 <td th:text="${knights.level}"/>
+                <td>
+                    <span th:if="${knights.quest==null}">Nothing to do.. <a th:href="${'/assignQuest?knightId='+knights.id}">Take new quest</a></span>
+                    <span th:if="${knights.quest!=null}" th:text="${knights.quest.description}"></span>
+                </td>
                 <td><a class="btn btn-info" th:href="${'/knight?id='+knights.id}">Show stats</a></td>
                 <td><a class="btn btn-danger" th:href="${'/knight/delete/'+knights.id}">Delete knight</a></td>
             </tr>

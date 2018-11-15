@@ -1,11 +1,16 @@
 package pl.duhc.springstart.domain;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.duhc.springstart.domain.repository.QuestRepository;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class Knight {
+
+    @Autowired
+    QuestRepository questRepository;
 
     private Integer id;
 
@@ -22,7 +27,7 @@ public class Knight {
     private Quest quest;
 
     public Knight() {
-
+        this.level = 1;
     }
 
     public Knight(String name, int age) {
@@ -32,6 +37,7 @@ public class Knight {
     }
 
     public void setQuest(Quest quest) {
+        quest.setStarted(true);
         this.quest = quest;
     }
 
