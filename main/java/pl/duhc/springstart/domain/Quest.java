@@ -1,13 +1,16 @@
 package pl.duhc.springstart.domain;
 
+import java.time.LocalDateTime;
+
 public class Quest {
 
     private int id;
     private String description;
     private int reward = 100;
-    private int time = 30000;
+    private int questLenght = 30;
     boolean started = false;
     boolean complited = false;
+    protected LocalDateTime startQuest;
 
     public Quest(int id, String description) {
         this.id = id;
@@ -38,12 +41,12 @@ public class Quest {
         this.reward = reward;
     }
 
-    public int getTime() {
-        return time;
+    public int getQuestLenght() {
+        return questLenght;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setQuestLenght(int questLenght) {
+        this.questLenght = questLenght;
     }
 
     public boolean isStarted() {
@@ -51,15 +54,25 @@ public class Quest {
     }
 
     public void setStarted(boolean started) {
+        if (started) {
+            this.startQuest = LocalDateTime.now();
+        }
         this.started = started;
     }
 
     public boolean isComplited() {
+        if (this.complited) {
+            return this.complited;
+        } else {
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime questTime = this.startQuest.plusSeconds(this.questLenght);
+            boolean isAfter = now.isAfter(questTime);
+            if (isAfter)
+                this.complited = true;
+            else
+                this.complited = false;
+        }
         return complited;
-    }
-
-    public void setComplited(boolean complited) {
-        this.complited = complited;
     }
 
     @Override

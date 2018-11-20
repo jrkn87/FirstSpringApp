@@ -15,7 +15,6 @@ public class TimeComponent {
     private LocalDateTime localDateTime = LocalDateTime.now();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy HH:mm:ss");
 
-    @Scheduled(fixedDelay = 1000)
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }

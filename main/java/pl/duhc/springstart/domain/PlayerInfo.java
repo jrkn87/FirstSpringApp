@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 
 @Component
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+//@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class PlayerInfo {
 
-    Random rand = new Random();
-    private int goldValue = rand.nextInt(50);
+    private int goldValue = 0;
 
     public int getGoldValue() {
         return goldValue;

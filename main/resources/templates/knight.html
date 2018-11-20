@@ -5,11 +5,12 @@
     <title th:text="${title}"></title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
 </head>
-<body style="background-color:rgb(108, 117, 125);color:white;">
+<body>
 <div class="container">
     Server time: <span th:text="${time}"/><br>
     Gold: <span th:text="${goldValue}"/><br><br>

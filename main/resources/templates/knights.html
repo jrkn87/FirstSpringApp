@@ -5,16 +5,17 @@
     <title th:text="${title}"></title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
 </head>
-<body style="background-color:rgb(108, 117, 125);color:white;">
+<body>
 <div class="container">
 
     Server time: <span th:text="${time}"/><br>
     Gold: <span th:text="${goldValue}"/><br><br>
+    <a class="mojlink" th:href="${'/check'}">Check quest status</a><br><br>
 
     <table class="table">
         <thead>
@@ -22,6 +23,7 @@
                 <td>Knight name:</td>
                 <td>Level:</td>
                 <td>Quest</td>
+                <td></td>
                 <td>Options:</td>
             </tr>
         </thead>
@@ -30,8 +32,12 @@
                 <td th:text="${knights.name}"/>
                 <td th:text="${knights.level}"/>
                 <td>
-                    <span th:if="${knights.quest==null}">Nothing to do.. <a th:href="${'/assignQuest?knightId='+knights.id}">Take new quest</a></span>
+                    <span th:if="${knights.quest==null}">Nothing to do..</span>
                     <span th:if="${knights.quest!=null}" th:text="${knights.quest.description}"></span>
+                </td>
+                <td>
+                    <span th:if="${knights.quest==null}"><a class="mojlink" th:href="${'/assignQuest?knightId='+knights.id}" th:text="${'Take new quest'}"></a></span>
+                    <span class="questTime" th:if="${knights.quest!=null}" th:text="${knights.quest.questLenght} + ' s'"></span>
                 </td>
                 <td><a class="btn btn-info" th:href="${'/knight?id='+knights.id}">Show stats</a></td>
                 <td><a class="btn btn-danger" th:href="${'/knight/delete/'+knights.id}">Delete knight</a></td>

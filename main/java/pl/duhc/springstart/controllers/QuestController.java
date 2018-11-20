@@ -52,4 +52,10 @@ public class QuestController {
         questService.updateQuest(knight.getQuest());
         return "redirect:/knights";
     }
+
+    @RequestMapping("/check")
+    public String checkQuestStatus() {
+        knightService.getMyGold();
+        return "redirect:/knights";
+    }
 }

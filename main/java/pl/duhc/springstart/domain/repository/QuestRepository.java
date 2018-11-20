@@ -1,11 +1,14 @@
 package pl.duhc.springstart.domain.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
+import pl.duhc.springstart.components.TimeComponent;
 import pl.duhc.springstart.domain.Quest;
 import pl.duhc.springstart.utils.Ids;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
