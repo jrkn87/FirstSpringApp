@@ -31,7 +31,8 @@
             </select>
         </div>
         <div class="row">
-            <button class="btn btn-default">Assign new quest to <span th:text="${knight.name}"/></button>
+            <span th:if="${allQuestNotStarted == null}"><a class="btn btn-default" href="/knights">Back to knights</a></span>
+            <span th:if="${allQuestNotStarted != null}"><button class="btn btn-default">Assign new quest to <span th:text="${knight.name}"/></button></span>
         </div>
     </form>
 </div>

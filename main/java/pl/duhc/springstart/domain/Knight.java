@@ -9,9 +9,6 @@ import javax.validation.constraints.Size;
 
 public class Knight {
 
-    @Autowired
-    QuestRepository questRepository;
-
     private Integer id;
 
     @NotNull
@@ -37,8 +34,11 @@ public class Knight {
     }
 
     public void setQuest(Quest quest) {
-        if (quest != null)
+        if (quest != null) {
             quest.setStarted(true);
+            quest.setDate(System.currentTimeMillis());
+        }
+
         this.quest = quest;
     }
 

@@ -1,7 +1,6 @@
 package pl.duhc.springstart.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.duhc.springstart.components.TimeComponent;
 import pl.duhc.springstart.domain.Knight;
 import pl.duhc.springstart.domain.PlayerInfo;
-import pl.duhc.springstart.domain.repository.QuestRepository;
 import pl.duhc.springstart.services.KnightService;
 
 import javax.validation.Valid;

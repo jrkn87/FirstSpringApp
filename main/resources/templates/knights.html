@@ -37,7 +37,7 @@
                 </td>
                 <td>
                     <span th:if="${knights.quest==null}"><a class="mojlink" th:href="${'/assignQuest?knightId='+knights.id}" th:text="${'Take new quest'}"></a></span>
-                    <span class="questTime" th:if="${knights.quest!=null}" th:text="${knights.quest.questLenght} + ' s'"></span>
+                    <span class="questTime" th:if="${knights.quest!=null}" th:text="${knights.quest.date}"></span>
                 </td>
                 <td><a class="btn btn-info" th:href="${'/knight?id='+knights.id}">Show stats</a></td>
                 <td><a class="btn btn-danger" th:href="${'/knight/delete/'+knights.id}">Delete knight</a></td>
@@ -48,5 +48,6 @@
         <a class="btn btn-default" href="/newknight">Create new Knight</a>
     </div>
 </div>
+<script src="js/script.js"></script>
 </body>
 </html>

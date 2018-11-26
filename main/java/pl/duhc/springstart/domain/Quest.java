@@ -1,9 +1,16 @@
 package pl.duhc.springstart.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public class Quest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String description;
     private int reward = 100;
@@ -11,6 +18,12 @@ public class Quest {
     boolean started = false;
     boolean complited = false;
     protected LocalDateTime startQuest;
+    protected LocalDateTime questDateEnd;
+    private Long date;
+
+    public Quest() {
+
+    }
 
     public Quest(int id, String description) {
         this.id = id;
@@ -73,6 +86,18 @@ public class Quest {
                 this.complited = false;
         }
         return complited;
+    }
+
+    public LocalDateTime getQuestDateEnd() {
+        return startQuest.plusSeconds(questLenght);
+    }
+
+    public Long getDate() {
+        return date + 30000;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
     }
 
     @Override
