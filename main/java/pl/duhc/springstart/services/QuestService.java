@@ -33,6 +33,6 @@ public class QuestService {
     }
 
     public void updateQuest(Quest quest) {
-        questRepository.updateQuest(quest.getId(), quest);
+        questRepository.updateQuest(quest);
     }
 }

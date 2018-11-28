@@ -25,6 +25,10 @@ public class Quest {
 
     }
 
+    public Quest(String description) {
+        this.description = description;
+    }
+
     public Quest(int id, String description) {
         this.id = id;
         this.description = description;

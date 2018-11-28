@@ -3,7 +3,11 @@ package pl.duhc.springstart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import pl.duhc.springstart.domain.Knight;
+import pl.duhc.springstart.domain.PlayerInfo;
 import pl.duhc.springstart.domain.repository.KnightRepository;
+import pl.duhc.springstart.domain.repository.PlayerInfoRepository;
 import pl.duhc.springstart.domain.repository.QuestRepository;
 import pl.duhc.springstart.services.QuestService;
 
@@ -17,9 +21,10 @@ public class Starter implements CommandLineRunner {
     QuestRepository questRepository;
 
     @Autowired
-    QuestService questService;
+    PlayerInfoRepository playerInfoRepository;
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         System.out.println("\n\n");
 
@@ -27,7 +32,10 @@ public class Starter implements CommandLineRunner {
         questRepository.createRandomQuest();
         questRepository.createRandomQuest();
 
+        knightRepository.createKnight("Persival", 21);
 
-        System.out.println("\n\n");
+        playerInfoRepository.createPlayerInfo();
+
+        //System.out.println("\n\n");
     }
 }

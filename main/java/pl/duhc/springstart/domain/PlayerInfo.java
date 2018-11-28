@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Random;
 
-@Component
 @Entity
 //@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class PlayerInfo {

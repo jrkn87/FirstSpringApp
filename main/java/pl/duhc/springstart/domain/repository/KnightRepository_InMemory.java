@@ -7,12 +7,11 @@ import pl.duhc.springstart.utils.Ids;
 import javax.annotation.PostConstruct;
 import java.util.*;
 
-@Repository
-public class InMemoryKnightRepository implements KnightRepository {
+public class KnightRepository_InMemory implements KnightRepository {
 
     Map<Integer, Knight> knights = new HashMap<>();
 
-    public InMemoryKnightRepository() {
+    public KnightRepository_InMemory() {
 
     }
 
@@ -58,7 +57,7 @@ public class InMemoryKnightRepository implements KnightRepository {
 
     @Override
     public String toString() {
-        return "InMemoryKnightRepository{" +
+        return "KnightRepository_InMemory{" +
                 "knights=" + knights +
                 '}';
     }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.duhc.springstart.components.TimeComponent;
 import pl.duhc.springstart.domain.Knight;
 import pl.duhc.springstart.domain.PlayerInfo;
+import pl.duhc.springstart.domain.repository.PlayerInfoRepository;
 import pl.duhc.springstart.services.KnightService;
 
 import javax.validation.Valid;
@@ -25,7 +26,7 @@ public class KnightsController {
     TimeComponent timeComponent;
 
     @Autowired
-    PlayerInfo playerInfo;
+    PlayerInfoRepository playerInfoRepository;
 
 /*
  *   GET -methods
@@ -33,6 +34,7 @@ public class KnightsController {
 
     @RequestMapping("/knights")
     public String getAllKnights(Model model) {
+        PlayerInfo playerInfo = playerInfoRepository.getFirst();
         model.addAttribute("knights", knightService.getAllKnights());
         model.addAttribute("title", "Loc'tar Ogar!");
         model.addAttribute("time", timeComponent);
@@ -42,6 +44,7 @@ public class KnightsController {
 
     @RequestMapping("/newknight")
     public String createKnight(Model model) {
+        PlayerInfo playerInfo = playerInfoRepository.getFirst();
         model.addAttribute("title", "Add new knight");
         model.addAttribute("knight", new Knight());
         model.addAttribute("time", timeComponent);
@@ -51,6 +54,7 @@ public class KnightsController {
 
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model) {
+        PlayerInfo playerInfo = playerInfoRepository.getFirst();
         Knight knight = knightService.getKnight(id);
         model.addAttribute("knight", knight);
         model.addAttribute("time", timeComponent);

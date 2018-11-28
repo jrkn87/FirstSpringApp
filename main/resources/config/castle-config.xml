@@ -10,7 +10,7 @@
     <context:component-scan base-package="pl.duhc.springstart"/>
     <context:property-placeholder location="classpath:knightRepository.properties"/>
 
-    <bean id="knightRepository" class="pl.duhc.springstart.domain.repository.InMemoryKnightRepository" init-method="init" destroy-method="tearDown">
+    <bean id="knightRepository" class="pl.duhc.springstart.domain.repository.KnightRepository_InMemory" init-method="init" destroy-method="tearDown">
         <constructor-arg index="0" ref="createKnight"/>
         <property name="name" value="${knightRepository.name}"/>
     </bean>

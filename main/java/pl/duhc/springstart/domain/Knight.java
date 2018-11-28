@@ -4,11 +4,15 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.duhc.springstart.domain.repository.QuestRepository;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Knight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
@@ -21,6 +25,7 @@ public class Knight {
 
     private int level;
 
+    @OneToOne
     private Quest quest;
 
     public Knight() {

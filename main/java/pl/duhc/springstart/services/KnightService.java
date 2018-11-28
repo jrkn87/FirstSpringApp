@@ -2,9 +2,12 @@ package pl.duhc.springstart.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.duhc.springstart.domain.Knight;
 import pl.duhc.springstart.domain.PlayerInfo;
 import pl.duhc.springstart.domain.repository.KnightRepository;
+import pl.duhc.springstart.domain.repository.PlayerInfoRepository;
+import pl.duhc.springstart.domain.repository.QuestRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +20,10 @@ public class KnightService {
     KnightRepository knightRepository;
 
     @Autowired
-    PlayerInfo playerInfo;
+    QuestRepository questRepository;
+
+    @Autowired
+    PlayerInfoRepository playerInfoRepository;
 
     public List<Knight> getAllKnights() {
         return new ArrayList<>(knightRepository.getAllKnights());
@@ -56,12 +62,16 @@ public class KnightService {
         return sum;
     }
 
+    @Transactional
     public void getMyGold() {
         getAllKnights().forEach(knight -> {
-            if (knight.getQuest()!=null)
-                knight.getQuest().isComplited();
+            if (knight.getQuest()!=null) {
+                boolean complited = knight.getQuest().isComplited();
+                if (complited)
+                    questRepository.updateQuest(knight.getQuest());
+            }
         });
-        int currentReward = playerInfo.getGoldValue();
-        playerInfo.setGoldValue(currentReward + collectReward());
+        int currentReward = playerInfoRepository.getFirst().getGoldValue();
+        playerInfoRepository.getFirst().setGoldValue(currentReward + collectReward());
     }
 }

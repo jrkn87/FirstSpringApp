@@ -11,6 +11,7 @@ import pl.duhc.springstart.components.TimeComponent;
 import pl.duhc.springstart.domain.Knight;
 import pl.duhc.springstart.domain.PlayerInfo;
 import pl.duhc.springstart.domain.Quest;
+import pl.duhc.springstart.domain.repository.PlayerInfoRepository;
 import pl.duhc.springstart.services.KnightService;
 import pl.duhc.springstart.services.QuestService;
 
@@ -29,7 +30,7 @@ public class QuestController {
     TimeComponent timeComponent;
 
     @Autowired
-    PlayerInfo playerInfo;
+    PlayerInfoRepository playerInfoRepository;
 
     /*
      *  GET
@@ -40,7 +41,6 @@ public class QuestController {
         Knight knight = knightService.getKnight(id);
         List<Quest> allQuestNotStarted = questService.getAllQuestNotStarted();
         model.addAttribute("time", timeComponent.toString());
-        model.addAttribute("goldValue", playerInfo.getGoldValue());
         model.addAttribute("knight", knight);
         model.addAttribute("allQuestNotStarted", allQuestNotStarted);
         return "assignQuest";
